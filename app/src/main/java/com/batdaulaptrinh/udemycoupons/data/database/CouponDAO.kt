@@ -1,4 +1,4 @@
-package com.batdaulaptrinh.udemycoupons.database.dao
+package com.batdaulaptrinh.udemycoupons.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

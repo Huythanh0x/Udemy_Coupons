@@ -2,7 +2,6 @@ package com.batdaulaptrinh.udemycoupons.ui.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -14,9 +13,8 @@ import com.bumptech.glide.Glide
 class RecyclerCouponAdapter(private val listCoupons: ArrayList<CouponItem>) :
     RecyclerView.Adapter<RecyclerCouponAdapter.MyViewHolder>() {
 
-    class MyViewHolder(itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
-        private val itemBinding = CouponItemBinding.bind(itemView)
+    class MyViewHolder(val itemBinding: CouponItemBinding) :
+        RecyclerView.ViewHolder(itemBinding.root) {
         fun bindView(couponItem: CouponItem) {
             itemBinding.apply {
                 courseNameTxt.text = couponItem.Title
@@ -47,7 +45,7 @@ class RecyclerCouponAdapter(private val listCoupons: ArrayList<CouponItem>) :
             parent,
             false
         )
-        return MyViewHolder(binding.root)
+        return MyViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {

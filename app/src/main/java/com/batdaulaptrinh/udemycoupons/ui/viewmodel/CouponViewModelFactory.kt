@@ -2,8 +2,8 @@ package com.batdaulaptrinh.udemycoupons.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.batdaulaptrinh.udemycoupons.database.dao.CouponDAO
-import com.batdaulaptrinh.udemycoupons.repository.CouponService
+import com.batdaulaptrinh.udemycoupons.data.database.CouponDAO
+import com.batdaulaptrinh.udemycoupons.data.api.CouponService
 
 open class CouponViewModelFactory(
     private val couponDAO: CouponDAO,

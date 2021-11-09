@@ -1,10 +1,10 @@
-package com.batdaulaptrinh.udemycoupons.model
+package com.batdaulaptrinh.udemycoupons.data.api
 
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitInstance {
+abstract class RetrofitInstance {
 
     companion object {
         private const val BASE_URL = "https://teachinguide.azure-api.net/"

@@ -1,4 +1,4 @@
-package com.batdaulaptrinh.udemycoupons.repository
+package com.batdaulaptrinh.udemycoupons.data.api
 
 import com.batdaulaptrinh.udemycoupons.model.APIResponse
 import com.batdaulaptrinh.udemycoupons.model.CouponItem
@@ -6,7 +6,7 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface CouponService {
-    @GET("course-coupon?sortCol=featured&sortDir=DESC&length=12&page=1&inkw=&language=")
+    @GET("/course-coupon?sortCol=featured&sortDir=DESC&length=100&page=1&inkw=&discount=100&language=")
     fun get(): Call<APIResponse>
 
     @GET("/course-coupon?sortCol=featured&sortDir=DESC&length=100&page=1&inkw=&discount=100&language=")
