@@ -22,6 +22,11 @@ class CouponViewModel(private val couponDAO: CouponDAO, private val couponServic
         call.enqueue(object : Callback<APIResponse?> {
             override fun onResponse(call: Call<APIResponse?>, response: Response<APIResponse?>) {
                 response.body()?.results?.let { coupons ->
+                    for(coupon in coupons){
+                        if(coupon.CourseId == null){
+                            Log.e("MY TAG",coupon.Title)
+                        }
+                    }
                     thread {
                         Log.i("VIEW MODEL TAG", coupons.toString())
                         couponDAO.addAllCoupon(coupons)

@@ -13,7 +13,6 @@ import com.batdaulaptrinh.udemycoupons.data.api.CouponService
 import com.batdaulaptrinh.udemycoupons.data.api.RetrofitInstance
 import com.batdaulaptrinh.udemycoupons.data.database.CouponDatabase
 import com.batdaulaptrinh.udemycoupons.databinding.FragmentHomeBinding
-import com.batdaulaptrinh.udemycoupons.model.CouponItem
 import com.batdaulaptrinh.udemycoupons.ui.adapter.RecyclerCouponAdapter
 import com.batdaulaptrinh.udemycoupons.ui.viewmodel.CouponViewModel
 import com.batdaulaptrinh.udemycoupons.ui.viewmodel.CouponViewModelFactory
@@ -21,7 +20,7 @@ import com.batdaulaptrinh.udemycoupons.ui.viewmodel.CouponViewModelFactory
 class HomeFragment : Fragment() {
     lateinit var couponViewModel: CouponViewModel
     lateinit var binding: FragmentHomeBinding
-
+    lateinit var adapter: RecyclerCouponAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,11 +37,12 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = DataBindingUtil.bind(view)!!
-
-        binding.recyclerView.adapter = RecyclerCouponAdapter(arrayListOf<CouponItem>())
+        adapter = RecyclerCouponAdapter(arrayListOf())
+        binding.recyclerView.adapter = adapter
 
         couponViewModel.getAllCoupons().observe(viewLifecycleOwner, Observer { coupons ->
-            binding.recyclerView.adapter = RecyclerCouponAdapter(coupons as ArrayList<CouponItem>)
+            adapter.setList(coupons)
+            adapter.notifyDataSetChanged()
         })
     }
 }

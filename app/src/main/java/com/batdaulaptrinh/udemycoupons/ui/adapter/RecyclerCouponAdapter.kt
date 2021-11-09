@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.batdaulaptrinh.udemycoupons.R
 import com.batdaulaptrinh.udemycoupons.databinding.CouponItemBinding
 import com.batdaulaptrinh.udemycoupons.model.CouponItem
+import com.batdaulaptrinh.udemycoupons.util.TimeLeft
 import com.bumptech.glide.Glide
 
 class RecyclerCouponAdapter(private val listCoupons: ArrayList<CouponItem>) :
@@ -20,7 +21,9 @@ class RecyclerCouponAdapter(private val listCoupons: ArrayList<CouponItem>) :
                 courseNameTxt.text = couponItem.Title
                 categoryTextView.text = couponItem.Category
                 authorTxt.text = couponItem.Author
-                reviewTxt.text = couponItem.Reviews.toString()
+                timeLeftTxt.text = TimeLeft.getTimeLeft(couponItem.EndTime)
+                reviewTxt.text = "${couponItem.Reviews.toString()}✍"
+                ratingTxt.text = "${couponItem.Rating.toString()}⭐"
                 Glide.with(itemView.context)
                     .load(couponItem.ImageUrl)
                     .placeholder(android.R.color.white)

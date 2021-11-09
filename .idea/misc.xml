@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/coupon_item_bg.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/drawable/rating_bg.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/drawable/time_left_bg.xml" value="0.3494791666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/coupon_item.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
