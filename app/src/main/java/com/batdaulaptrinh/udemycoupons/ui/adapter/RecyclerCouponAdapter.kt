@@ -11,12 +11,15 @@ import com.batdaulaptrinh.udemycoupons.model.CouponItem
 import com.batdaulaptrinh.udemycoupons.util.TimeLeft
 import com.bumptech.glide.Glide
 
-class RecyclerCouponAdapter(private val listCoupons: ArrayList<CouponItem>) :
+class RecyclerCouponAdapter(
+    private val listCoupons: ArrayList<CouponItem>,
+    val clickListener: (couponItem: CouponItem) -> Unit
+) :
     RecyclerView.Adapter<RecyclerCouponAdapter.MyViewHolder>() {
 
     class MyViewHolder(val itemBinding: CouponItemBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        fun bindView(couponItem: CouponItem) {
+        fun bindView(couponItem: CouponItem, clickListener: (couponItem: CouponItem) -> Unit) {
             itemBinding.apply {
                 courseNameTxt.text = couponItem.Title
                 categoryTextView.text = couponItem.Category
@@ -29,7 +32,10 @@ class RecyclerCouponAdapter(private val listCoupons: ArrayList<CouponItem>) :
                     .placeholder(android.R.color.white)
                     .into(itemBinding.imageView)
             }
-
+            itemBinding.root.setOnClickListener {
+                clickListener(couponItem)
+                Log.i("MY TAG CLICK","CLICK COUPONS RECYCLERVER")
+            }
 
             Log.d("MY TAG RECYCLER VIEW", couponItem.Title)
         }
@@ -53,7 +59,7 @@ class RecyclerCouponAdapter(private val listCoupons: ArrayList<CouponItem>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = listCoupons[position]
-        holder.bindView(item)
+        holder.bindView(item, clickListener)
     }
 
     override fun getItemCount(): Int = listCoupons.size

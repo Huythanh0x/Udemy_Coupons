@@ -18,4 +18,7 @@ interface CouponDAO {
     @Query("DELETE FROM coupon_table")
     fun deleteAllCoupon()
 
+    @Query("SELECT * FROM coupon_table WHERE (Title) LIKE :formattedQuery")
+    fun getCouponContainKeyword(formattedQuery: String):LiveData<List<CouponItem>>
+
 }
