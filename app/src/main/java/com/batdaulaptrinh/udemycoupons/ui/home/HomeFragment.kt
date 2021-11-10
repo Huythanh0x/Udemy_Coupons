@@ -1,5 +1,8 @@
 package com.batdaulaptrinh.udemycoupons.ui.home
 
+import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -56,6 +59,7 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
         })
     }
 
+    @SuppressLint("SetTextI18n")
     fun showCouponDetail(couponItem: CouponItem) {
         val builder = AlertDialog.Builder(requireContext())
         val detailCouponDialogBinding = DetailCouponDialogBinding.inflate(layoutInflater)
@@ -64,8 +68,8 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
             categoryTextView.text = couponItem.Category
             authorTxt.text = couponItem.Author
             timeLeftTxt.text = TimeLeft.getTimeLeft(couponItem.EndTime)
-            reviewTxt.text = "${couponItem.Reviews.toString()}✍"
-            ratingTxt.text = "${couponItem.Rating.toString()}⭐"
+            reviewTxt.text = "${couponItem.Reviews}✍"
+            ratingTxt.text = "${couponItem.Rating}⭐"
             Glide.with(requireActivity())
                 .load(couponItem.ImageUrl)
                 .placeholder(android.R.color.white)
@@ -73,6 +77,8 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
         }
 
         builder.setView(detailCouponDialogBinding.root)
+        val dialog = builder.create()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         builder.show()
 
     }
