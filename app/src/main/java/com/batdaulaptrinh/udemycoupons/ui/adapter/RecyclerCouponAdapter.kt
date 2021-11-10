@@ -23,7 +23,7 @@ class RecyclerCouponAdapter(
             itemBinding.apply {
                 courseNameTxt.text = couponItem.Title
                 categoryTextView.text = couponItem.Category
-                authorTxt.text = couponItem.Author
+                authorTxt.text =    couponItem.Author
                 timeLeftTxt.text = TimeLeft.getTimeLeft(couponItem.EndTime)
                 reviewTxt.text = "${couponItem.Reviews.toString()}✍"
                 ratingTxt.text = "${couponItem.Rating.toString()}⭐"
@@ -37,7 +37,7 @@ class RecyclerCouponAdapter(
                 Log.i("MY TAG CLICK","CLICK COUPONS RECYCLERVER")
             }
 
-            Log.d("MY TAG RECYCLER VIEW", couponItem.Title)
+            Log.d("MY TAG RECYCLER VIEW", couponItem.Title.toString())
         }
 
     }

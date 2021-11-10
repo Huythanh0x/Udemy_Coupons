@@ -14,9 +14,12 @@ import com.batdaulaptrinh.udemycoupons.R
 import com.batdaulaptrinh.udemycoupons.data.api.CouponService
 import com.batdaulaptrinh.udemycoupons.data.api.RetrofitInstance
 import com.batdaulaptrinh.udemycoupons.data.database.CouponDatabase
+import com.batdaulaptrinh.udemycoupons.databinding.DetailCouponDialogBinding
 import com.batdaulaptrinh.udemycoupons.databinding.FragmentHomeBinding
 import com.batdaulaptrinh.udemycoupons.model.CouponItem
 import com.batdaulaptrinh.udemycoupons.ui.adapter.RecyclerCouponAdapter
+import com.batdaulaptrinh.udemycoupons.util.TimeLeft
+import com.bumptech.glide.Glide
 
 class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
     lateinit var couponViewModel: HomeViewModel
@@ -55,7 +58,21 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
 
     fun showCouponDetail(couponItem: CouponItem) {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setView(R.layout.detail_coupon_dialog)
+        val detailCouponDialogBinding = DetailCouponDialogBinding.inflate(layoutInflater)
+        detailCouponDialogBinding.apply {
+            courseNameTxt.text = couponItem.Title
+            categoryTextView.text = couponItem.Category
+            authorTxt.text = couponItem.Author
+            timeLeftTxt.text = TimeLeft.getTimeLeft(couponItem.EndTime)
+            reviewTxt.text = "${couponItem.Reviews.toString()}✍"
+            ratingTxt.text = "${couponItem.Rating.toString()}⭐"
+            Glide.with(requireActivity())
+                .load(couponItem.ImageUrl)
+                .placeholder(android.R.color.white)
+                .into(detailCouponDialogBinding.imageView)
+        }
+
+        builder.setView(detailCouponDialogBinding.root)
         builder.show()
 
     }

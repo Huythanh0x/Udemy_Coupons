@@ -9,40 +9,36 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="3dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/coupon_item_bg">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_image_view"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="2dp"
-            app:cardCornerRadius="18dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/example"
             app:layout_constrainedHeight="true"
             app:layout_constraintDimensionRatio="H,480:270"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".97">
+            app:layout_constraintWidth_percent=".95" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/example" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/time_left_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/time_left_bg"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="1dp"
-                android:text="4 DAYS LEFT"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-        </androidx.cardview.widget.CardView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/time_left_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="2dp"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/time_left_bg"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
+            android:text="4 DAYS LEFT"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -54,16 +50,15 @@
             android:text="Complete Photography : 21 Courses in 1 [Beginner to Expert]"
             android:textSize="17sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/card_image_view"
-            app:layout_constraintStart_toStartOf="@id/card_image_view"
-            app:layout_constraintTop_toBottomOf="@id/card_image_view" />
+            app:layout_constraintEnd_toEndOf="@id/image_view"
+            app:layout_constraintStart_toStartOf="@id/image_view"
+            app:layout_constraintTop_toBottomOf="@id/image_view" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/author_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:minLines="1"
+            android:maxLines="2"
             android:text="Creative Online School"
             android:textSize="12sp"
             android:textStyle="italic"
@@ -89,7 +84,7 @@
             android:layout_marginTop="10dp"
             android:padding="5dp"
             android:text="2377✍"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/course_name_txt"
             app:layout_constraintTop_toBottomOf="@+id/category_text_view" />
 
@@ -102,7 +97,7 @@
             android:paddingHorizontal="15dp"
             android:paddingVertical="5sp"
             android:text="4.3⭐"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/review_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/review_txt" />

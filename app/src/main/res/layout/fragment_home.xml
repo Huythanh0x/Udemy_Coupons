@@ -15,7 +15,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:background="@color/purple_500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,9 +24,11 @@
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                app:queryHint="Search for you"
+                app:defaultQueryHint="Search for you"
                 android:layout_marginHorizontal="20dp"
-                android:background="@color/white" />
+                android:background="@drawable/search_bg" />
         </androidx.appcompat.widget.Toolbar>
 
 
@@ -39,6 +41,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:spanCount="2"
             tools:itemCount="10"
             tools:listitem="@layout/coupon_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>

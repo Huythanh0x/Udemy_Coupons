@@ -10,6 +10,9 @@ import com.batdaulaptrinh.udemycoupons.model.CouponItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+import java.util.logging.Handler
+import kotlin.concurrent.schedule
 import kotlin.concurrent.thread
 
 class HomeViewModel(private val couponDAO: CouponDAO, private val couponService: CouponService) :
@@ -34,7 +37,12 @@ class HomeViewModel(private val couponDAO: CouponDAO, private val couponService:
             }
 
             override fun onFailure(call: Call<APIResponse?>, t: Throwable) {
-                throw ExceptionInInitializerError()
+                //TODO check internet
+                // throw ExceptionInInitializerError()
+                Timer().schedule(2000) {
+                    initNetworkRequest()
+                }
+
             }
 
 

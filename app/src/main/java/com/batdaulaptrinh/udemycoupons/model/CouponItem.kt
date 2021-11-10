@@ -9,11 +9,16 @@ import com.google.gson.annotations.SerializedName
 data class CouponItem(
     @PrimaryKey
     @SerializedName("CourseId") var CourseId: Int,
-    @SerializedName("Language") var Language: String,
-    @SerializedName("Category") var Category: String,
-    @SerializedName("Title") var Title: String,
-    @SerializedName("Topic") var Topic: String,
-    @SerializedName("Level") var Level: String,
+    @Nullable
+    @SerializedName("Language") var Language: String?,
+    @Nullable
+    @SerializedName("Category") var Category: String?,
+    @Nullable
+    @SerializedName("Title") var Title: String?,
+    @Nullable
+    @SerializedName("Topic") var Topic: String?,
+    @Nullable
+    @SerializedName("Level") var Level: String?,
     @Nullable
     @SerializedName("Author") var Author: String?,
     @SerializedName("Duration") var Duration: Double,
