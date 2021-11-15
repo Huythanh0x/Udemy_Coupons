@@ -2,16 +2,14 @@ package com.batdaulaptrinh.udemycoupons.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.batdaulaptrinh.udemycoupons.data.database.CouponDAO
-import com.batdaulaptrinh.udemycoupons.data.api.CouponService
+import com.batdaulaptrinh.udemycoupons.data.repository.CouponRepository
 
 open class HomeViewModelFactory(
-    private val couponDAO: CouponDAO,
-    private val couponService: CouponService
+    private val repository: CouponRepository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-            return HomeViewModel(couponDAO, couponService) as T
+            return HomeViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

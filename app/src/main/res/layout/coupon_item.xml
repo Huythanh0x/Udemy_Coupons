@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
             android:maxLines="2"
+            android:minLines="2"
             android:text="Complete Photography : 21 Courses in 1 [Beginner to Expert]"
             android:textSize="17sp"
             android:textStyle="bold"

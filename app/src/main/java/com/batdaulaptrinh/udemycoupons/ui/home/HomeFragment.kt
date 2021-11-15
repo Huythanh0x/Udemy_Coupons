@@ -17,6 +17,7 @@ import com.batdaulaptrinh.udemycoupons.R
 import com.batdaulaptrinh.udemycoupons.data.api.CouponService
 import com.batdaulaptrinh.udemycoupons.data.api.RetrofitInstance
 import com.batdaulaptrinh.udemycoupons.data.database.CouponDatabase
+import com.batdaulaptrinh.udemycoupons.data.repository.CouponRepository
 import com.batdaulaptrinh.udemycoupons.databinding.DetailCouponDialogBinding
 import com.batdaulaptrinh.udemycoupons.databinding.FragmentHomeBinding
 import com.batdaulaptrinh.udemycoupons.model.CouponItem
@@ -24,8 +25,9 @@ import com.batdaulaptrinh.udemycoupons.ui.adapter.RecyclerCouponAdapter
 import com.batdaulaptrinh.udemycoupons.util.TimeLeft
 import com.bumptech.glide.Glide
 
-class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
-    lateinit var couponViewModel: HomeViewModel
+class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
+    android.widget.SearchView.OnQueryTextListener {
+    lateinit var homeViewModel: HomeViewModel
     lateinit var binding: FragmentHomeBinding
     lateinit var adapter: RecyclerCouponAdapter
     override fun onCreateView(
@@ -35,9 +37,10 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
     ): View? {
         val couponDao = CouponDatabase.getDatabase(requireContext()).couponDAO()
         val couponService = RetrofitInstance.getInstance().create(CouponService::class.java)
-        val couponViewModelFactory = HomeViewModelFactory(couponDao, couponService)
-        couponViewModel =
-            ViewModelProvider(this, couponViewModelFactory)[HomeViewModel::class.java]
+        val repository = CouponRepository(couponDao, couponService)
+        val homeViewModelFactory = HomeViewModelFactory(repository)
+        homeViewModel =
+            ViewModelProvider(this, homeViewModelFactory)[HomeViewModel::class.java]
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
@@ -49,11 +52,11 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
         }
         binding.recyclerView.adapter = adapter
         binding.searchView.setOnQueryTextListener(this)
-        couponViewModel.getAllCoupons().observe(viewLifecycleOwner, { coupons ->
+        homeViewModel.getAllCoupons().observe(viewLifecycleOwner, { coupons ->
             adapter.setList(coupons)
             adapter.notifyDataSetChanged()
         })
-        couponViewModel.showCouponList.observe(viewLifecycleOwner, { coupons ->
+        homeViewModel.showCouponList.observe(viewLifecycleOwner, { coupons ->
             adapter.setList(coupons)
             adapter.notifyDataSetChanged()
         })
@@ -85,18 +88,16 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (query != null) {
-            val formattedQuery = "%${query}%"
-            couponViewModel.getCouponContainKeyword(formattedQuery)
+            val couponToShow = homeViewModel.getCouponContainKeyword(query)
         }
         return true
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        Log.i("MY TAG", "TEXT CHANGE${newText}")
+        Log.i("MY TAG", "TEXT CHANGE $newText")
 
         val formattedQuery = "%${newText}%"
-        Log.i("TAG INPUT SEARCH", formattedQuery)
-        couponViewModel.getCouponContainKeyword(formattedQuery)
+        val couponToShow = homeViewModel.getCouponContainKeyword(formattedQuery)
         return true
     }
 }

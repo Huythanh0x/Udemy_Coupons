@@ -1,37 +1,37 @@
 package com.batdaulaptrinh.udemycoupons.ui.home
 
 import android.util.Log
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.batdaulaptrinh.udemycoupons.data.api.CouponService
-import com.batdaulaptrinh.udemycoupons.data.database.CouponDAO
+import androidx.lifecycle.viewModelScope
+import com.batdaulaptrinh.udemycoupons.data.repository.CouponRepository
 import com.batdaulaptrinh.udemycoupons.model.APIResponse
 import com.batdaulaptrinh.udemycoupons.model.CouponItem
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-import java.util.logging.Handler
 import kotlin.concurrent.schedule
-import kotlin.concurrent.thread
 
-class HomeViewModel(private val couponDAO: CouponDAO, private val couponService: CouponService) :
+class HomeViewModel(val repository: CouponRepository) :
     ViewModel() {
-    var showCouponList: LiveData<List<CouponItem>> = couponDAO.getCouponContainKeyword("")
+    var showCouponList = MutableLiveData<List<CouponItem>>()
 
     init {
         initNetworkRequest()
     }
 
     private fun initNetworkRequest() {
-        val call = couponService.get()
+        val call = repository.get()
         call.enqueue(object : Callback<APIResponse?> {
             override fun onResponse(call: Call<APIResponse?>, response: Response<APIResponse?>) {
                 response.body()?.results?.let { coupons ->
-                    thread {
-                        Log.i("VIEW MODEL TAG", coupons.toString())
-                        couponDAO.deleteAllCoupon()
-                        couponDAO.addAllCoupon(coupons)
+                    Log.i("VIEW MODEL TAG", coupons.toString())
+                    viewModelScope.launch(IO) {
+                        repository.deleteAllCoupon()
+                        repository.addAllCoupon(coupons)
                     }
                 }
             }
@@ -42,17 +42,16 @@ class HomeViewModel(private val couponDAO: CouponDAO, private val couponService:
                 Timer().schedule(2000) {
                     initNetworkRequest()
                 }
-
             }
-
-
         })
     }
 
-    fun getAllCoupons() = couponDAO.getAllCoupon()
+    fun getAllCoupons() = repository.getAllCoupon()
     fun getCouponContainKeyword(formattedQuery: String) {
-        showCouponList = couponDAO.getCouponContainKeyword(formattedQuery)
-        Log.i("TAG OUTPUT SEARCH", showCouponList.value.toString())
+        Log.i("TAG OUTPUT SEARCH ", showCouponList.value.toString())
+        viewModelScope.launch(IO) {
+            showCouponList.postValue(repository.getCouponContainKeyword(formattedQuery))
+        }
     }
 
 }

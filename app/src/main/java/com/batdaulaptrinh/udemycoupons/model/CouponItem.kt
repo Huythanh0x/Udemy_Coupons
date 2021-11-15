@@ -33,5 +33,8 @@ data class CouponItem(
     @SerializedName("EndTime") var EndTime: String,
     @SerializedName("Featured") var Featured: Boolean,
     @SerializedName("Prio") var Prio: Int
-
-)
+){
+    override fun toString(): String {
+        return Title.toString()
+    }
+}

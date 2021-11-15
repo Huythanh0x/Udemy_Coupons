@@ -13,12 +13,12 @@ interface CouponDAO {
     fun getAllCoupon(): LiveData<List<CouponItem>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addAllCoupon(allCoupons: List<CouponItem>)
+    suspend fun addAllCoupon(allCoupons: List<CouponItem>)
 
     @Query("DELETE FROM coupon_table")
-    fun deleteAllCoupon()
+    suspend fun deleteAllCoupon()
 
-    @Query("SELECT * FROM coupon_table WHERE (Title) LIKE :formattedQuery")
-    fun getCouponContainKeyword(formattedQuery: String):LiveData<List<CouponItem>>
+    @Query("SELECT * FROM coupon_table WHERE LOWER(Title) LIKE :formattedQuery")
+    suspend fun getCouponContainKeyword(formattedQuery: String): List<CouponItem>
 
 }

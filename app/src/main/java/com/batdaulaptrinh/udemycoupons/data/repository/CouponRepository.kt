@@ -9,5 +9,11 @@ import retrofit2.Call
 
 class CouponRepository(private val couponDAO: CouponDAO, private val couponService: CouponService) {
     fun fetchDataFromAPI(): Call<APIResponse> = couponService.get()
-    fun getDataFromDB(): LiveData<List<CouponItem>> = couponDAO.getAllCoupon()
+    fun getAllCoupon(): LiveData<List<CouponItem>> = couponDAO.getAllCoupon()
+    suspend fun getCouponContainKeyword(formattedString: String): List<CouponItem> =
+        couponDAO.getCouponContainKeyword(formattedString)
+
+    fun get() = couponService.get()
+    suspend fun deleteAllCoupon() = couponDAO.deleteAllCoupon()
+    suspend fun addAllCoupon(coupons: List<CouponItem>) = couponDAO.addAllCoupon(coupons)
 }

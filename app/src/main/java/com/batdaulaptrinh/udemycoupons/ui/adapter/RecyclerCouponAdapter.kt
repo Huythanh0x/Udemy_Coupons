@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 
 class RecyclerCouponAdapter(
     private val listCoupons: ArrayList<CouponItem>,
-    val clickListener: (couponItem: CouponItem) -> Unit
+    private val clickListener: (couponItem: CouponItem) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerCouponAdapter.MyViewHolder>() {
 
@@ -23,10 +23,10 @@ class RecyclerCouponAdapter(
             itemBinding.apply {
                 courseNameTxt.text = couponItem.Title
                 categoryTextView.text = couponItem.Category
-                authorTxt.text =    couponItem.Author
+                authorTxt.text = couponItem.Author
                 timeLeftTxt.text = TimeLeft.getTimeLeft(couponItem.EndTime)
-                reviewTxt.text = "${couponItem.Reviews.toString()}✍"
-                ratingTxt.text = "${couponItem.Rating.toString()}⭐"
+                reviewTxt.text = "${couponItem.Reviews}✍"
+                ratingTxt.text = "${couponItem.Rating}⭐"
                 Glide.with(itemView.context)
                     .load(couponItem.ImageUrl)
                     .placeholder(android.R.color.white)
@@ -34,7 +34,7 @@ class RecyclerCouponAdapter(
             }
             itemBinding.root.setOnClickListener {
                 clickListener(couponItem)
-                Log.i("MY TAG CLICK","CLICK COUPONS RECYCLERVER")
+                Log.i("MY TAG CLICK", "CLICK COUPONS RECYCLERVER")
             }
 
             Log.d("MY TAG RECYCLER VIEW", couponItem.Title.toString())
@@ -47,7 +47,10 @@ class RecyclerCouponAdapter(
         listCoupons.addAll(newListCoupons)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): MyViewHolder {
         val binding: CouponItemBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
             R.layout.coupon_item,
