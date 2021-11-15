@@ -1,8 +1,10 @@
 package com.batdaulaptrinh.udemycoupons.ui.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -24,6 +26,7 @@ import com.batdaulaptrinh.udemycoupons.model.CouponItem
 import com.batdaulaptrinh.udemycoupons.ui.adapter.RecyclerCouponAdapter
 import com.batdaulaptrinh.udemycoupons.util.TimeLeft
 import com.bumptech.glide.Glide
+
 
 class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
     android.widget.SearchView.OnQueryTextListener {
@@ -73,10 +76,26 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
             timeLeftTxt.text = TimeLeft.getTimeLeft(couponItem.EndTime)
             reviewTxt.text = "${couponItem.Reviews}✍"
             ratingTxt.text = "${couponItem.Rating}⭐"
+            durationTxt.text = "\uD83D\uDD52${couponItem.Duration}"
+            studentTxt.text = "${couponItem.Students}\uD83E\uDDD1"
             Glide.with(requireActivity())
                 .load(couponItem.ImageUrl)
                 .placeholder(android.R.color.white)
                 .into(detailCouponDialogBinding.imageView)
+            shareBtn.setOnClickListener {
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    val sendText = "This course is FREE, enroll now \n ${couponItem.CouponLink}"
+                    putExtra(Intent.EXTRA_TEXT, sendText)
+                    type = "text/plain"
+                }
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                startActivity(shareIntent)
+            }
+            enrollBtn.setOnClickListener {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(couponItem.CouponLink))
+                startActivity(browserIntent)
+            }
         }
 
         builder.setView(detailCouponDialogBinding.root)
@@ -88,16 +107,16 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (query != null) {
-            val couponToShow = homeViewModel.getCouponContainKeyword(query)
+            val formattedQuery = "%${query}%"
+            homeViewModel.getCouponContainKeyword(formattedQuery)
         }
         return true
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
         Log.i("MY TAG", "TEXT CHANGE $newText")
-
         val formattedQuery = "%${newText}%"
-        val couponToShow = homeViewModel.getCouponContainKeyword(formattedQuery)
+        homeViewModel.getCouponContainKeyword(formattedQuery)
         return true
     }
 }
