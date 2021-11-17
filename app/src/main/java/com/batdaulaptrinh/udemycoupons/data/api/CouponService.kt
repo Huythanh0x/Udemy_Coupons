@@ -6,7 +6,7 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface CouponService {
-    @GET("/course-coupon?sortCol=featured&sortDir=DESC&length=100&page=1&inkw=&discount=100&language=")
+    @GET("/Huythanh0x/crawl_coupon_link/master/final_api.json")
     fun get(): Call<APIResponse>
 
     @GET("/course-coupon?sortCol=featured&sortDir=DESC&length=100&page=1&inkw=&discount=100&language=")

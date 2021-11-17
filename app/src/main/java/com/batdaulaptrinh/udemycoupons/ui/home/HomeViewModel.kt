@@ -1,5 +1,6 @@
 package com.batdaulaptrinh.udemycoupons.ui.home
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,7 +19,7 @@ import kotlin.concurrent.schedule
 class HomeViewModel(val repository: CouponRepository) :
     ViewModel() {
     var showCouponList = MutableLiveData<List<CouponItem>>()
-
+    var lastTimeUpdate = MutableLiveData<String>()
     init {
         initNetworkRequest()
     }
@@ -27,12 +28,16 @@ class HomeViewModel(val repository: CouponRepository) :
         val call = repository.get()
         call.enqueue(object : Callback<APIResponse?> {
             override fun onResponse(call: Call<APIResponse?>, response: Response<APIResponse?>) {
+                Log.d("TAG RESPONSE",response.toString())
                 response.body()?.results?.let { coupons ->
                     Log.i("VIEW MODEL TAG", coupons.toString())
                     viewModelScope.launch(IO) {
                         repository.deleteAllCoupon()
                         repository.addAllCoupon(coupons)
                     }
+                }
+                response.body()?.last_time_update?.let {
+                    lastTimeUpdate.postValue(it)
                 }
             }
 
@@ -44,6 +49,7 @@ class HomeViewModel(val repository: CouponRepository) :
                 }
             }
         })
+
     }
 
     fun getAllCoupons() = repository.getAllCoupon()

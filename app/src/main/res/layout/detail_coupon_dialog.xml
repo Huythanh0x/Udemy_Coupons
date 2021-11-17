@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -13,126 +14,182 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/dialog_bg">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view"
-            android:layout_width="0dp"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/example"
-            app:layout_constrainedHeight="true"
-            app:layout_constraintDimensionRatio="H,480:270"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".95" />
+            >
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/time_left_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="2dp"
-            android:layout_marginStart="2dp"
-            android:background="@drawable/time_left_bg"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="5dp"
-            android:text="4 DAYS LEFT"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="50dp"
+                    android:src="@drawable/example"
+                    app:layout_constrainedHeight="true"
+                    app:layout_constraintDimensionRatio="H,480:270"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".95" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/time_left_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="2dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:background="@drawable/time_left_bg"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="5dp"
+                    android:text="4 DAYS LEFT"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/course_name_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:maxLines="2"
-            android:text="Complete Photography : 21 Courses in 1 [Beginner to Expert]"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/image_view"
-            app:layout_constraintStart_toStartOf="@id/image_view"
-            app:layout_constraintTop_toBottomOf="@id/image_view" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/course_name_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:maxLines="2"
+                    android:text="Complete Photography : 21 Courses in 1 [Beginner to Expert]"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/image_view"
+                    app:layout_constraintStart_toStartOf="@id/image_view"
+                    app:layout_constraintTop_toBottomOf="@id/image_view" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/author_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="2"
-            android:text="Creative Online School"
-            android:textSize="15sp"
-            android:textStyle="italic"
-            app:layout_constraintStart_toStartOf="@+id/course_name_txt"
-            app:layout_constraintTop_toBottomOf="@+id/course_name_txt" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/author_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="Creative Online School"
+                    android:textSize="15sp"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="@+id/course_name_txt"
+                    app:layout_constraintTop_toBottomOf="@+id/course_name_txt" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/category_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Photography and Video"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/course_name_txt"
-            app:layout_constraintStart_toStartOf="@+id/course_name_txt"
-            app:layout_constraintTop_toBottomOf="@+id/author_txt" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/category_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Photography and Video"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/course_name_txt"
+                    app:layout_constraintStart_toStartOf="@+id/course_name_txt"
+                    app:layout_constraintTop_toBottomOf="@+id/author_txt" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/review_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="2377✍"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/student_txt"
-            app:layout_constraintTop_toBottomOf="@+id/category_text_view" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/review_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="5dp"
+                    android:text="2377"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toStartOf="@+id/student_txt"
+                    app:layout_constraintTop_toBottomOf="@+id/category_text_view" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/rating_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:background="@drawable/rating_bg"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="5sp"
-            android:text="4.3⭐"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/rating_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:background="@drawable/rating_bg"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="5sp"
+                    android:text="4.3⭐"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/student_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:padding="5dp"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="5sp"
-            android:text="10000🧑‍"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/review_txt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/review_txt" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/student_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:padding="5dp"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="5sp"
+                    android:text="10000"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/review_txt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/review_txt" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/duration_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="5sp"
-            android:text="🕒 22h"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="@+id/review_txt"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/review_txt" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/duration_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="5sp"
+                    android:text="22h"
+                    android:textSize="18dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/review_txt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/review_txt" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/headline_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Headline here"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/duration_txt" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/description_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="DESCRIPTION"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/headline_txt" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/description_content_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="samplexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:paddingBottom="30dp"
+                    app:layout_constraintTop_toBottomOf="@id/description_txt" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/share_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="10dp"
+            android:background="@drawable/search_bg"
+            android:paddingHorizontal="20dp"
             android:text="Share Now"
             app:layout_constraintBottom_toBottomOf="@+id/enroll_btn"
             app:layout_constraintEnd_toStartOf="@id/enroll_btn"
@@ -143,12 +200,13 @@
             android:id="@+id/enroll_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:paddingHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/enroll_now_button_bg"
+            android:paddingHorizontal="20dp"
             android:text="Enroll Now"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/share_btn"
-            app:layout_constraintTop_toBottomOf="@id/review_txt" />
+            app:layout_constraintStart_toEndOf="@+id/share_btn" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

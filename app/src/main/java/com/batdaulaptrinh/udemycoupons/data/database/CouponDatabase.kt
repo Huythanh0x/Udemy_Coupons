@@ -21,7 +21,7 @@ abstract class CouponDatabase : RoomDatabase() {
             }
             synchronized(this) {
                 val instance =
-                    Room.databaseBuilder(context, CouponDatabase::class.java, "todo_database.db")
+                    Room.databaseBuilder(context, CouponDatabase::class.java, "udemy_coupon")
                         .build()
                 INSTANCE = instance
                 return instance

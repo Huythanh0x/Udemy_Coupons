@@ -23,14 +23,26 @@
 
             <SearchView
                 android:id="@+id/search_view"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/search_bg"
-                android:iconifiedByDefault="false"
+                android:iconifiedByDefault="true"
                 app:defaultQueryHint="Search for you"
                 app:queryHint="Search for you" />
         </androidx.appcompat.widget.Toolbar>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/last_time_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="23dp"
+            android:text="click to fetch"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/recycler_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <androidx.recyclerview.widget.RecyclerView

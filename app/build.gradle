@@ -9,11 +9,11 @@ android {
 
     defaultConfig {
         applicationId "com.batdaulaptrinh.udemycoupons"
-        minSdk 21
+        minSdk 14
         targetSdk 31
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures{
@@ -37,7 +37,10 @@ android {
 }
 
 dependencies {
-
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation ("com.squareup.okhttp3:okhttp:3.12.12"){
+        force = true //API 19 support
+    }
     def retrofit_version = "2.8.1"
     def lifecycle_version = "2.4.0-rc01"
 

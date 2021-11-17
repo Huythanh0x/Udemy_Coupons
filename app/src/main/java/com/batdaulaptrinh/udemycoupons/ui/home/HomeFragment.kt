@@ -1,11 +1,13 @@
 package com.batdaulaptrinh.udemycoupons.ui.home
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -47,6 +49,7 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = DataBindingUtil.bind(view)!!
@@ -63,6 +66,11 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
             adapter.setList(coupons)
             adapter.notifyDataSetChanged()
         })
+        homeViewModel.lastTimeUpdate.observe(viewLifecycleOwner) { lastTimeUpdate ->
+            Log.i("TAG TIME", lastTimeUpdate)
+            binding.lastTimeUpdate.text = TimeLeft.getTimeUpdate(lastTimeUpdate)
+
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -70,22 +78,26 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
         val builder = AlertDialog.Builder(requireContext())
         val detailCouponDialogBinding = DetailCouponDialogBinding.inflate(layoutInflater)
         detailCouponDialogBinding.apply {
-            courseNameTxt.text = couponItem.Title
-            categoryTextView.text = couponItem.Category
-            authorTxt.text = couponItem.Author
-            timeLeftTxt.text = TimeLeft.getTimeLeft(couponItem.EndTime)
-            reviewTxt.text = "${couponItem.Reviews}✍"
-            ratingTxt.text = "${couponItem.Rating}⭐"
-            durationTxt.text = "\uD83D\uDD52${couponItem.Duration}"
-            studentTxt.text = "${couponItem.Students}\uD83E\uDDD1"
+            courseNameTxt.text = couponItem.title
+            categoryTextView.text = couponItem.category
+            authorTxt.text = couponItem.author
+            val timeLeft = TimeLeft.getTimeLeft(couponItem.endDay)
+            timeLeftTxt.text = timeLeft
+            reviewTxt.text = "${couponItem.reviews}✍"
+            ratingTxt.text = "${couponItem.rating}⭐"
+            durationTxt.text = "\uD83D\uDD52${couponItem.duration}"
+            studentTxt.text = "${couponItem.students}\uD83E\uDDD1"
+            descriptionContentText.text = Html.fromHtml(couponItem.description)
+            headlineTxt.text = couponItem.headline
             Glide.with(requireActivity())
-                .load(couponItem.ImageUrl)
+                .load(couponItem.previewImg)
                 .placeholder(android.R.color.white)
                 .into(detailCouponDialogBinding.imageView)
             shareBtn.setOnClickListener {
                 val sendIntent: Intent = Intent().apply {
                     action = Intent.ACTION_SEND
-                    val sendText = "This course is FREE, enroll now \n ${couponItem.CouponLink}"
+                    val sendText =
+                        "This course is FREE. There is only $timeLeft. Enroll now ${couponItem.couponLink}"
                     putExtra(Intent.EXTRA_TEXT, sendText)
                     type = "text/plain"
                 }
@@ -93,7 +105,7 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
                 startActivity(shareIntent)
             }
             enrollBtn.setOnClickListener {
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(couponItem.CouponLink))
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(couponItem.couponLink))
                 startActivity(browserIntent)
             }
         }

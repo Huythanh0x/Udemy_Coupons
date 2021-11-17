@@ -1,5 +1,6 @@
 package com.batdaulaptrinh.udemycoupons.ui.adapter
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -17,18 +18,20 @@ class RecyclerCouponAdapter(
 ) :
     RecyclerView.Adapter<RecyclerCouponAdapter.MyViewHolder>() {
 
-    class MyViewHolder(val itemBinding: CouponItemBinding) :
+    class MyViewHolder(private val itemBinding: CouponItemBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
+        @SuppressLint("SetTextI18n")
         fun bindView(couponItem: CouponItem, clickListener: (couponItem: CouponItem) -> Unit) {
             itemBinding.apply {
-                courseNameTxt.text = couponItem.Title
-                categoryTextView.text = couponItem.Category
-                authorTxt.text = couponItem.Author
-                timeLeftTxt.text = TimeLeft.getTimeLeft(couponItem.EndTime)
-                reviewTxt.text = "${couponItem.Reviews}✍"
-                ratingTxt.text = "${couponItem.Rating}⭐"
+                courseNameTxt.text = couponItem.title
+                categoryTextView.text = couponItem.category
+                authorTxt.text = couponItem.author
+                timeLeftTxt.text = TimeLeft.getTimeLeft(couponItem.endDay)
+                reviewTxt.text = "${couponItem.reviews}✍"
+                ratingTxt.text = "${couponItem.rating}⭐"
+
                 Glide.with(itemView.context)
-                    .load(couponItem.ImageUrl)
+                    .load(couponItem.previewImg)
                     .placeholder(android.R.color.white)
                     .into(itemBinding.imageView)
             }
@@ -37,7 +40,7 @@ class RecyclerCouponAdapter(
                 Log.i("MY TAG CLICK", "CLICK COUPONS RECYCLERVER")
             }
 
-            Log.d("MY TAG RECYCLER VIEW", couponItem.Title.toString())
+            Log.d("MY TAG RECYCLER VIEW", couponItem.title)
         }
 
     }
