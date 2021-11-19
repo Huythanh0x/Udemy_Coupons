@@ -1,7 +1,6 @@
 package com.batdaulaptrinh.udemycoupons.ui.home
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -9,9 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
@@ -35,6 +32,10 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
     lateinit var homeViewModel: HomeViewModel
     lateinit var binding: FragmentHomeBinding
     lateinit var adapter: RecyclerCouponAdapter
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -61,6 +62,7 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
         homeViewModel.getAllCoupons().observe(viewLifecycleOwner, { coupons ->
             adapter.setList(coupons)
             adapter.notifyDataSetChanged()
+            "There are ${coupons.size} today".also { binding.numberOfCoupon.text = it }
         })
         homeViewModel.showCouponList.observe(viewLifecycleOwner, { coupons ->
             adapter.setList(coupons)
@@ -131,4 +133,5 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
         homeViewModel.getCouponContainKeyword(formattedQuery)
         return true
     }
+
 }
