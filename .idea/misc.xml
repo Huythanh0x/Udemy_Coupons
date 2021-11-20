@@ -7,12 +7,20 @@
         <entry key="app/src/main/res/drawable-v24/coupon_item_bg.xml" value="0.3494791666666667" />
         <entry key="app/src/main/res/drawable-v24/dialog_bg.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/drawable-v24/enroll_now_button_bg.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/drawable/blogger_ic.xml" value="0.3494791666666667" />
         <entry key="app/src/main/res/drawable/card_image_background.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/drawable/contact_icon_bg.xml" value="0.3494791666666667" />
         <entry key="app/src/main/res/drawable/coupon_item_bg.xml" value="0.3494791666666667" />
         <entry key="app/src/main/res/drawable/coupon_item_detail_bg.xml" value="0.3494791666666667" />
         <entry key="app/src/main/res/drawable/dialog_bg.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/drawable/email_ic.xml" value="0.3494791666666667" />
         <entry key="app/src/main/res/drawable/enroll_now_button_bg.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/drawable/facebook_ic.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/drawable/github_ic.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.3494791666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_filter_alt_24.xml" value="0.19635416666666666" />
+        <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/drawable/ic_baseline_login_24.xml" value="0.3494791666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.3494791666666667" />
         <entry key="app/src/main/res/drawable/rating_bg.xml" value="0.3494791666666667" />
         <entry key="app/src/main/res/drawable/search_bg.xml" value="0.3494791666666667" />
@@ -21,7 +29,9 @@
         <entry key="app/src/main/res/layout/coupon_item.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/custom_coupon_item.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/detail_coupon_dialog.xml" value="0.3333333333333333" />
+        <entry key="app/src/main/res/layout/fragment_filter_fragement.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/list_coupon_fragment.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.3333333333333333" />
       </map>

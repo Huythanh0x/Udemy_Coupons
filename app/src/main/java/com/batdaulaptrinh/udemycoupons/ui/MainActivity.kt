@@ -1,23 +1,55 @@
 package com.batdaulaptrinh.udemycoupons.ui
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.work.*
 import com.batdaulaptrinh.udemycoupons.R
 import com.batdaulaptrinh.udemycoupons.databinding.ActivityMainBinding
 import com.batdaulaptrinh.udemycoupons.notification.NotifyWorker
+import com.batdaulaptrinh.udemycoupons.util.Constants
 import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         startWork()
+        navController = findNavController(R.id.nav_host_fragment)
+
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigate_to_home,
+                R.id.navigate_to_filter,
+                R.id.navigate_to_settings
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        binding.bottomNavigation.setupWithNavController(navController)
+        if (intent.hasExtra(Constants.NOTIFICATION_ID)) {
+            val notificationId = intent.getIntExtra(Constants.NOTIFICATION_ID, 0)
+            Toast.makeText(this, "notification ID + $notificationId", Toast.LENGTH_LONG).show()
+        }
+        supportActionBar?.hide()
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navController, null)
+    }
+
+
     /**
      * Constraints ensure that work is deferred until optimal conditions are met.
      *

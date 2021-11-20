@@ -57,5 +57,15 @@ class TimeLeft {
                 }
             }
         }
+
+        fun isLessThan1Hour(lastTimeUpdate: String): Boolean {
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+            sdf.timeZone = TimeZone.getTimeZone("Europe/Madrid")
+            val lastUpdate: Date = sdf.parse(lastTimeUpdate)
+            val currentDate = Calendar.getInstance().time
+            Log.i("TIME TAG", currentDate.toString())
+            var diff: Long = currentDate.time - lastUpdate.time
+            return TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS) > 1
+        }
     }
 }
