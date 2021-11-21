@@ -1,19 +1,25 @@
 package com.batdaulaptrinh.udemycoupons.ui.home
 
 import android.annotation.SuppressLint
+import android.app.backup.SharedPreferencesBackupHelper
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.Html
 import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.work.impl.model.Preference
 import com.batdaulaptrinh.udemycoupons.R
 import com.batdaulaptrinh.udemycoupons.data.api.CouponService
 import com.batdaulaptrinh.udemycoupons.data.api.RetrofitInstance

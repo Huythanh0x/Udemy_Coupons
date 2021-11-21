@@ -38,15 +38,19 @@ android {
 
 dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation ("com.squareup.okhttp3:okhttp:3.12.12"){
-        force = true //API 19 support
-    }
+    implementation ("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
     // Kotlin + coroutines
     def work_version = "2.7.0"
     implementation "androidx.work:work-runtime-ktx:$work_version"
 
     def retrofit_version = "2.8.1"
-    def lifecycle_version = "2.4.0-rc01"
+    def lifecycle_version = "2.4.0"
+
+    //Preferences
+    implementation "androidx.preference:preference-ktx:1.1.1"
+
+    //Jetpack DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"

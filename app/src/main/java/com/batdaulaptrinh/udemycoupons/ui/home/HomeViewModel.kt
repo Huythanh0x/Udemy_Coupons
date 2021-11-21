@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.batdaulaptrinh.udemycoupons.data.repository.CouponRepository
 import com.batdaulaptrinh.udemycoupons.model.APIResponse
 import com.batdaulaptrinh.udemycoupons.model.CouponItem
-import com.batdaulaptrinh.udemycoupons.util.TimeLeft
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -25,6 +24,7 @@ class HomeViewModel(val repository: CouponRepository) :
         initNetworkRequest()
     }
 
+
     private fun initNetworkRequest() {
         val call = repository.get()
         call.enqueue(object : Callback<APIResponse?> {
@@ -32,14 +32,12 @@ class HomeViewModel(val repository: CouponRepository) :
                 Log.d("TAG RESPONSE", response.toString())
                 response.body()?.last_time_update?.let {
                     lastTimeUpdate.postValue(it)
-                    if (TimeLeft.isLessThan1Hour(it)) {
-                        response.body()?.results?.let { coupons ->
-                            Log.i("VIEW MODEL TAG", coupons.toString())
-                            viewModelScope.launch(IO) {
-                                repository.deleteAllCoupon()
-                                repository.addAllCoupon(coupons)
-                            }
-                        }
+                }
+                response.body()?.results?.let { coupons ->
+                    Log.i("VIEW MODEL TAG", coupons.toString())
+                    viewModelScope.launch(IO) {
+                        repository.deleteAllCoupon()
+                        repository.addAllCoupon(coupons)
                     }
                 }
 
