@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.settings.SettingFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/dark_collapse_toolbar_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/ic_baseline_logout_24" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:text="YOUR PROFILE"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="100dp"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toStartOf="@id/user_email_title_txt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView"
+            app:layout_constraintWidth_percent=".3">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/avatar_user"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/teal_200" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/user_name_title_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="user name"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/user_email_title_txt"
+            app:layout_constraintEnd_toEndOf="@+id/user_email_title_txt"
+            app:layout_constraintStart_toStartOf="@+id/user_email_title_txt"
+            app:layout_constraintTop_toTopOf="@+id/card_view" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/user_name_content_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="19522244"
+            app:layout_constraintBottom_toBottomOf="@+id/user_name_title_txt"
+            app:layout_constraintStart_toStartOf="@+id/user_email_content_txt"
+            app:layout_constraintTop_toTopOf="@+id/user_name_title_txt" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/user_email_content_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="batdaulaptrinh@gmail.com"
+            app:layout_constraintBottom_toBottomOf="@id/user_email_title_txt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/user_email_title_txt"
+            app:layout_constraintStart_toEndOf="@+id/user_email_title_txt"
+            app:layout_constraintTop_toTopOf="@id/user_email_title_txt" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/user_email_title_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="user email"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/number_of_coupon_title_txt"
+            app:layout_constraintEnd_toStartOf="@id/user_email_content_txt"
+            app:layout_constraintStart_toEndOf="@id/card_view"
+            app:layout_constraintTop_toBottomOf="@+id/user_name_title_txt" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/number_of_coupon_title_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="has enrolled"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/card_view"
+            app:layout_constraintEnd_toEndOf="@+id/user_email_title_txt"
+            app:layout_constraintStart_toStartOf="@+id/user_email_title_txt"
+            app:layout_constraintTop_toBottomOf="@+id/user_email_title_txt" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toTopOf="@+id/setting_txt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_view" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/setting_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="SETTINGS"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_view" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/number_of_coupons_content_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/number_of_coupon_title_txt"
+            app:layout_constraintStart_toStartOf="@+id/user_email_content_txt"
+            app:layout_constraintTop_toTopOf="@+id/number_of_coupon_title_txt" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/is_dark_mode_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:text="DARK MODE"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/setting_txt" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/dark_mode_sw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/is_dark_mode_txt"
+            app:layout_constraintStart_toStartOf="@+id/new_coupon_notification_sw"
+            app:layout_constraintTop_toTopOf="@+id/is_dark_mode_txt" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/notification_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="NEW COUPON NOTIFICATION"
+            app:layout_constraintStart_toStartOf="@+id/is_dark_mode_txt"
+            app:layout_constraintTop_toBottomOf="@+id/is_dark_mode_txt" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/new_coupon_notification_sw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/notification_txt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/notification_txt"
+            app:layout_constraintTop_toTopOf="@+id/notification_txt" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toTopOf="@+id/dev_contact_txt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/new_coupon_notification_sw" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dev_contact_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="DEV CONTACT"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/new_coupon_notification_sw" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_dev_avatar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="10dp"
+            app:cardCornerRadius="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dev_contact_txt"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintWidth_percent=".2">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/dev_img" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/user_name_dev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:text="Huythanh0x"
+            app:layout_constraintBottom_toTopOf="@id/dev_bio"
+            app:layout_constraintStart_toEndOf="@+id/card_view_dev_avatar"
+            app:layout_constraintTop_toTopOf="@+id/card_view_dev_avatar" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dev_bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Student at UIT- VietNam"
+            app:layout_constraintBottom_toBottomOf="@+id/card_view_dev_avatar"
+            app:layout_constraintStart_toStartOf="@+id/user_name_dev"
+            app:layout_constraintTop_toBottomOf="@+id/user_name_dev" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/contact_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_view_dev_avatar"
+            app:layout_marginBaseline="10dp">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/web_site_contact_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/contact_icon_bg"
+                android:clickable="true"
+                android:padding="10dp"
+                android:src="@drawable/blogger_ic" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/facebook_contact_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/contact_icon_bg"
+                android:clickable="true"
+                android:padding="10dp"
+                android:src="@drawable/facebook_ic" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/github_contact_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/contact_icon_bg"
+                android:clickable="true"
+                android:padding="10dp"
+                android:src="@drawable/github_ic" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/email_contact_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/contact_icon_bg"
+                android:clickable="true"
+                android:padding="10dp"
+                android:src="@drawable/email_ic" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
