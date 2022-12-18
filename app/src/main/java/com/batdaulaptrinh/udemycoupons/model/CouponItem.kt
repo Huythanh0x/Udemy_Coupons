@@ -13,14 +13,14 @@ data class CouponItem(
     @SerializedName("title") var title: String,
     @SerializedName("level") var level: String,
     @SerializedName("author") var author: String,
-    @SerializedName("duration") var duration: String,
+    @SerializedName("content_length") var contentLength: String,
     @SerializedName("rating") var rating: String,
     @SerializedName("reviews") var reviews: String,
     @SerializedName("students") var students: String,
     @SerializedName("coupon_code") var couponCode: String,
     @SerializedName("preview_img") var previewImg: String,
     @SerializedName("coupon_link") var couponLink: String,
-    @SerializedName("end_day") var endDay: String,
+    @SerializedName("expired_date") var expiredDate: String,
     @SerializedName("headline") var headline: String,
     @SerializedName("description") var description: String,
     @SerializedName("preview_video") var previewVideo: String
@@ -28,6 +28,6 @@ data class CouponItem(
 
 ) {
     override fun toString(): String {
-        return title
+        return courseId
     }
 }

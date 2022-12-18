@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.batdaulaptrinh.udemycoupons.model.CouponItem
 
-@Database(entities = [CouponItem::class], version = 1, exportSchema = false)
+@Database(entities = [CouponItem::class], version = 3, exportSchema = false)
 abstract class CouponDatabase : RoomDatabase() {
     abstract fun couponDAO(): CouponDAO
 
@@ -22,6 +22,7 @@ abstract class CouponDatabase : RoomDatabase() {
             synchronized(this) {
                 val instance =
                     Room.databaseBuilder(context, CouponDatabase::class.java, "udemy_coupon")
+                        .fallbackToDestructiveMigration()
                         .build()
                 INSTANCE = instance
                 return instance

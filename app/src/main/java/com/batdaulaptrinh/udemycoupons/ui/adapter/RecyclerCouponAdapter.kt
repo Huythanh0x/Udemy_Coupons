@@ -26,7 +26,7 @@ class RecyclerCouponAdapter(
                 courseNameTxt.text = couponItem.title
                 categoryTextView.text = couponItem.category
                 authorTxt.text = couponItem.author
-                timeLeftTxt.text = TimeLeft.getTimeLeft(couponItem.endDay)
+                timeLeftTxt.text = TimeLeft.getTimeLeft(couponItem.expiredDate)
                 reviewTxt.text = "${couponItem.reviews}✍"
                 ratingTxt.text = "${couponItem.rating}⭐"
 
